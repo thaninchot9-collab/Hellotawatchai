@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.2/14 Homework Pulse - แบบสำรวจภาระการบ้าน</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Prompt', sans-serif; }
+  .chip input:checked + span { background:#4f46e5; color:#fff; border-color:#4f46e5; }
+  .chip span { display:block; border:1px solid #cbd5e1; border-radius:.75rem; padding:.55rem .5rem; text-align:center; font-size:.8rem; cursor:pointer; transition:.15s; }
+  .chip input { position:absolute; opacity:0; pointer-events:none; }
+  .chip input:focus-visible + span { outline:2px solid #4f46e5; outline-offset:2px; }
+  .lk input:checked + span { background:#4f46e5; color:#fff; border-color:#4f46e5; }
+  .lk span { display:block; border:1px solid #cbd5e1; border-radius:.5rem; padding:.45rem 0; text-align:center; font-size:.85rem; cursor:pointer; }
+  .lk input { position:absolute; opacity:0; pointer-events:none; }
+  .lk input:focus-visible + span { outline:2px solid #4f46e5; outline-offset:2px; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen p-4">
+<div class="max-w-xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden my-6 border border-slate-100">
+
+  <div class="bg-indigo-600 p-6 text-white text-center">
+    <h1 class="text-2xl font-bold">📚 M.2/14 Homework Pulse</h1>
+    <p class="text-indigo-100 text-sm mt-1">แบบสำรวจภาระการบ้านและผลกระทบทางจิตใจ (2 สัปดาห์)</p>
+  </div>
+
+  <div class="p-6 space-y-8">
+
+    <!-- ตอนที่ 1 -->
+    <section class="space-y-4">
+      <h2 class="font-bold text-indigo-700 text-lg border-b border-indigo-100 pb-2">ตอนที่ 1 ข้อมูลส่วนบุคคล</h2>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div class="col-span-1">
+          <label class="block text-sm font-semibold mb-2" for="studentNo">เลขที่</label>
+          <input id="studentNo" type="number" min="1" max="35" placeholder="1-35" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+        <div class="col-span-2">
+          <label class="block text-sm font-semibold mb-2" for="studentName">ชื่อ-นามสกุลจริง (ม.2/14)</label>
+          <input id="studentName" type="text" autocomplete="name" placeholder="เช่น ด.ช.สมชาย ใจดี" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+      </div>
+      <p class="text-xs text-slate-400 -mt-2">ระบบจะจำข้อมูลตอนที่ 1 ไว้ในเครื่อง ไม่ต้องกรอกใหม่ทุกวัน</p>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <span class="block text-sm font-semibold mb-2">เพศ</span>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="chip relative"><input type="radio" name="gender" value="ชาย"><span>ชาย</span></label>
+            <label class="chip relative"><input type="radio" name="gender" value="หญิง"><span>หญิง</span></label>
+            <label class="chip relative"><input type="radio" name="gender" value="ไม่ระบุ"><span>ไม่ระบุ</span></label>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="age">อายุ (ปี)</label>
+          <input id="age" type="number" min="11" max="17" placeholder="เช่น 14" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+      </div>
+
+      <div>
+        <span class="block text-sm font-semibold mb-2">เรียนพิเศษ / กิจกรรมหลังเลิกเรียน</span>
+        <div class="grid grid-cols-4 gap-2">
+          <label class="chip relative"><input type="radio" name="extra" value="ไม่มี"><span>ไม่มี</span></label>
+          <label class="chip relative"><input type="radio" name="extra" value="1-2 วัน/สัปดาห์"><span>1-2 วัน</span></label>
+          <label class="chip relative"><input type="radio" name="extra" value="3-4 วัน/สัปดาห์"><span>3-4 วัน</span></label>
+          <label class="chip relative"><input type="radio" name="extra" value="5 วันขึ้นไป"><span>5 วัน+</span></label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2" for="sleepHrs">ปกติคุณนอนวันละกี่ชั่วโมง (ช่วงมีการบ้าน)</label>
+        <input id="sleepHrs" type="number" min="0" max="14" step="0.5" placeholder="เช่น 6.5" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+      </div>
+    </section>
+
+    <!-- ตอนที่ 2 -->
+    <section class="space-y-4">
+      <h2 class="font-bold text-indigo-700 text-lg border-b border-indigo-100 pb-2">ตอนที่ 2 ปริมาณการบ้านและลักษณะภาระงาน</h2>
+      <p class="text-xs text-slate-500">กรอกทีละวัน (บันทึกซ้ำได้จนครบ 2 สัปดาห์)</p>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="weekNo">สัปดาห์ที่</label>
+          <select id="weekNo" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+            <option value="1">สัปดาห์ที่ 1</option><option value="2">สัปดาห์ที่ 2</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="dayName">วัน</label>
+          <select id="dayName" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+            <option>จันทร์</option><option>อังคาร</option><option>พุธ</option><option>พฤหัสบดี</option><option>ศุกร์</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2" for="minutes">เวลาที่ใช้ทำการบ้านวันนี้รวมทั้งหมด (นาที)</label>
+        <input id="minutes" type="number" min="0" max="600" step="5" placeholder="เช่น 90" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        <div id="minFlag" class="mt-2 text-sm font-medium"></div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2" for="subjects">จำนวนวิชาที่มีการบ้านวันนี้</label>
+        <select id="subjects" class="w-full p-3 border border-slate-300 rounded-xl bg-white">
+          <option value="">-- เลือกจำนวนวิชา --</option>
+          <option value="0">ไม่มีการบ้าน</option><option value="1">1 วิชา</option><option value="2">2 วิชา</option>
+          <option value="3">3 วิชา</option><option value="4">4 วิชา</option><option value="5">5 วิชาขึ้นไป</option>
+        </select>
+        <div id="subFlag" class="mt-2 text-sm font-medium"></div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2" for="heavySubject">วิชาที่การบ้านเยอะเป็นพิเศษ</label>
+        <input id="heavySubject" type="text" placeholder="เช่น คณิตศาสตร์, วิทยาศาสตร์" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+      </div>
+
+      <div>
+        <span class="block text-sm font-semibold mb-2">ลักษณะงานที่ได้รับ (เลือกได้หลายข้อ)</span>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="chip relative"><input type="checkbox" name="wtype" value="แบบฝึกหัด/ใบงาน"><span>แบบฝึกหัด / ใบงาน</span></label>
+          <label class="chip relative"><input type="checkbox" name="wtype" value="โครงงาน/ชิ้นงาน"><span>โครงงาน / ชิ้นงาน</span></label>
+          <label class="chip relative"><input type="checkbox" name="wtype" value="อ่าน/ท่องจำเตรียมสอบ"><span>อ่าน / ท่องจำ / เตรียมสอบ</span></label>
+          <label class="chip relative"><input type="checkbox" name="wtype" value="งานกลุ่ม"><span>งานกลุ่ม</span></label>
+          <label class="chip relative"><input type="checkbox" name="wtype" value="งานออนไลน์/ส่งผ่านแอป"><span>งานออนไลน์ / ส่งผ่านแอป</span></label>
+          <label class="chip relative"><input type="checkbox" name="wtype" value="ส่งภายในวันถัดไป"><span>ต้องส่งวันถัดไป</span></label>
+        </div>
+      </div>
+
+      <div>
+        <span class="block text-sm font-semibold mb-2">ระดับความหนักของการบ้านวันนี้</span>
+        <div class="grid grid-cols-3 gap-2">
+          <label class="chip relative"><input type="radio" name="loadLevel" value="สบายๆ" checked><span>🟢 สบาย ๆ</span></label>
+          <label class="chip relative"><input type="radio" name="loadLevel" value="เริ่มตึง"><span>🟡 เริ่มตึงมือ</span></label>
+          <label class="chip relative"><input type="radio" name="loadLevel" value="ไม่ไหว"><span>🔴 ท่วม / ไม่ไหว</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ตอนที่ 3 -->
+    <section class="space-y-4">
+      <h2 class="font-bold text-indigo-700 text-lg border-b border-indigo-100 pb-2">ตอนที่ 3 ผลกระทบทางจิตใจ</h2>
+      <p class="text-xs text-slate-500">จากการบ้านวันนี้ ระดับความรู้สึกของคุณเป็นอย่างไร (1 = ไม่เลย, 5 = มากที่สุด)</p>
+      <div id="likert" class="space-y-4"></div>
+      <div>
+        <label class="block text-sm font-semibold mb-2" for="note">อยากบอกอะไรครูเพิ่มเติม (ไม่บังคับ)</label>
+        <textarea id="note" rows="2" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+      </div>
+    </section>
+
+    <button onclick="submitData()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold p-3.5 rounded-xl transition shadow-lg shadow-indigo-100">
+      💾 บันทึกข้อมูลวันนี้
+    </button>
+    <div id="msg" class="text-sm text-center font-medium" role="status"></div>
+  </div>
+
+  <!-- สรุปผล -->
+  <div class="bg-slate-100 p-6 border-t border-slate-200">
+    <div class="flex items-center justify-between mb-1">
+      <h2 class="font-bold text-slate-700">🏫 สรุปทั้งห้อง ม.2/14</h2>
+      <button onclick="loadClass()" class="text-xs text-indigo-600 border border-indigo-200 rounded-lg px-2 py-1 bg-white">🔄 รีเฟรช</button>
+    </div>
+    <p id="classNote" class="text-xs text-slate-500 mb-3" role="status"></p>
+    <div id="classSummary" class="grid grid-cols-2 gap-3 text-sm mb-8"></div>
+
+    <h2 class="font-bold text-slate-700 mb-1">📊 สรุปของคุณในเครื่องนี้</h2>
+    <p id="syncNote" class="text-xs mb-3" role="status"></p>
+    <div id="summary" class="grid grid-cols-2 gap-3 text-sm"></div>
+    <h3 class="font-semibold text-slate-700 mt-5 mb-2 text-sm">รายการของคุณในเครื่องนี้</h3>
+    <div class="overflow-x-auto bg-white rounded-xl border border-slate-200">
+      <table class="w-full text-xs">
+        <thead class="bg-slate-50 text-slate-500"><tr>
+          <th class="p-2 text-left">เลขที่</th><th class="p-2 text-left">ชื่อ-นามสกุล</th><th class="p-2 text-left">สัปดาห์/วัน</th>
+          <th class="p-2 text-right">นาที</th><th class="p-2 text-right">วิชา</th><th class="p-2 text-right">เครียด</th><th class="p-2"></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="flex gap-2 mt-4">
+      <button onclick="exportCSV()" class="flex-1 bg-white border border-slate-300 rounded-xl py-2 text-sm hover:bg-slate-50">⬇️ ดาวน์โหลด CSV</button>
+      <button onclick="clearAll()" class="flex-1 bg-white border border-rose-200 text-rose-600 rounded-xl py-2 text-sm hover:bg-rose-50">🗑️ ล้างข้อมูล</button>
+    </div>
+    <p class="text-xs text-slate-400 mt-3">สรุปทั้งห้องคำนวณจากข้อมูลที่ไม่มีชื่อและเลขที่ จึงไม่รู้ว่าใครตอบอะไร</p>
+    <div class="mt-5 pt-4 border-t border-slate-200 text-xs text-slate-500">
+      <p class="font-semibold text-slate-600 mb-1">ผู้จัดทำ</p>
+      <ol class="space-y-0.5 list-decimal list-inside">
+        <li>กรณพัฒน์ ยอยเงิน เลขที่ 1</li>
+        <li>ด.ช.ธนินท์โชติ เลิศศรัณวงศ์ เลขที่ 6</li>
+        <li>ด.ช.ภัทรพล ลิ้นนิยม เลขที่ 10</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+const KEY = 'm214_hw_v2';
+const LIMIT_MIN = 80;
+
+// วางค่า Firebase config (Project settings > Your apps > Web app) ตรงนี้
+const FIREBASE_CONFIG = { databaseURL: 'https://ilovezogger-default-rtdb.asia-southeast1.firebasedatabase.app', projectId: 'ilovezogger' };
+const ONLINE = !!FIREBASE_CONFIG.databaseURL;
+const PROFILE_KEY = 'm214_hw_profile';
+const sel = document.getElementById('studentName');
+
+function saveProfile() {
+  const p = { no: $('studentNo').value, name: sel.value.trim(), gender: radio('gender'), age: $('age').value, extra: radio('extra'), sleepHrs: $('sleepHrs').value };
+  try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch (e) {}
+}
+function restoreProfile() {
+  let p = {};
+  try { p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}'); } catch (e) {}
+  $('studentNo').value = p.no || ''; sel.value = p.name || ''; $('age').value = p.age || ''; $('sleepHrs').value = p.sleepHrs || '';
+  ['gender', 'extra'].forEach(n => { const el = document.querySelector(`input[name="${n}"][value="${p[n]}"]`); if (el) el.checked = true; });
+}
+
+const ITEMS = [
+  ['stress', 'รู้สึกเครียดจากการบ้าน'],
+  ['anxious', 'กังวลว่าจะทำไม่ทันหรือถูกตัดคะแนน'],
+  ['tired', 'รู้สึกเหนื่อยล้า / หมดแรง'],
+  ['sleep', 'นอนน้อยลงเพราะการบ้าน'],
+  ['nofun', 'หมดสนุกหรือหมดกำลังใจในการเรียน'],
+  ['norest', 'ไม่มีเวลาพักผ่อน ทำกิจกรรม หรืออยู่กับครอบครัว']
+];
+document.getElementById('likert').innerHTML = ITEMS.map(([k, t]) => `
+  <div>
+    <p class="text-sm mb-2">${t}</p>
+    <div class="grid grid-cols-5 gap-2">
+      ${[1,2,3,4,5].map(n => `<label class="lk relative"><input type="radio" name="${k}" value="${n}"><span>${n}</span></label>`).join('')}
+    </div>
+  </div>`).join('');
+
+function flag(el, over, text) {
+  el.textContent = text;
+  el.className = 'mt-2 text-sm font-medium ' + (over ? 'text-rose-600' : 'text-emerald-600');
+}
+document.getElementById('minutes').addEventListener('input', e => {
+  const v = e.target.value;
+  const out = document.getElementById('minFlag');
+  if (v === '') { out.textContent = ''; return; }
+  flag(out, +v > LIMIT_MIN, +v > LIMIT_MIN ? `⚠️ เกิน ${LIMIT_MIN} นาที (เกินไป ${+v - LIMIT_MIN} นาที)` : `✅ ไม่เกิน ${LIMIT_MIN} นาที`);
+});
+document.getElementById('subjects').addEventListener('change', e => {
+  const v = e.target.value, out = document.getElementById('subFlag');
+  if (v === '') { out.textContent = ''; return; }
+  const n = +v;
+  if (n > 3) flag(out, true, '⚠️ เกิน 3 วิชา');
+  else if (n > 2) flag(out, true, '⚠️ เกิน 2 วิชา (ถึง 3 วิชา)');
+  else flag(out, false, '✅ ไม่เกิน 2 วิชา');
+});
+
+function load() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+function save(r) { try { localStorage.setItem(KEY, JSON.stringify(r)); return true; } catch (e) { return false; } }
+const radio = n => (document.querySelector(`input[name="${n}"]:checked`) || {}).value || '';
+const $ = id => document.getElementById(id);
+
+function submitData() {
+  const msg = $('msg');
+  const fail = t => { msg.textContent = '⚠️ ' + t; msg.className = 'text-sm text-center font-medium text-rose-600'; };
+  if (!$('studentNo').value) return fail('กรุณากรอกเลขที่');
+  if (sel.value.trim().length < 3) return fail('กรุณากรอกชื่อ-นามสกุลจริง');
+  if (!radio('gender')) return fail('กรุณาเลือกเพศ');
+  if (!radio('extra')) return fail('กรุณาเลือกเรียนพิเศษ/กิจกรรมหลังเลิกเรียน');
+  const no = +$('studentNo').value;
+  if (!Number.isInteger(no) || no < 1 || no > 35) return fail('เลขที่ต้องเป็นจำนวนเต็ม 1-35');
+  const ageV = $('age').value;
+  if (ageV !== '' && !(+ageV >= 9 && +ageV <= 20)) return fail('อายุไม่อยู่ในช่วงที่เป็นไปได้ (9-20 ปี)');
+  const sleepV = $('sleepHrs').value;
+  if (sleepV !== '' && !(+sleepV >= 0 && +sleepV <= 14)) return fail('ชั่วโมงนอนต้องอยู่ระหว่าง 0-14');
+  if ($('minutes').value === '') return fail('กรุณากรอกเวลาที่ใช้ทำการบ้าน (นาที)');
+  const minV = +$('minutes').value;
+  if (!(minV >= 0 && minV <= 600)) return fail('เวลาทำการบ้านต้องอยู่ระหว่าง 0-600 นาที');
+  if ($('subjects').value === '') return fail('กรุณาเลือกจำนวนวิชาที่มีการบ้าน');
+  if (+$('subjects').value === 0 && minV > 0) return fail('เลือก "ไม่มีการบ้าน" แต่ใส่เวลามากกว่า 0 นาที กรุณาตรวจสอบ');
+  const scores = {};
+  for (const [k] of ITEMS) {
+    const v = radio(k);
+    if (!v) return fail('กรุณาตอบตอนที่ 3 ให้ครบทุกข้อ');
+    scores[k] = +v;
+  }
+  const minutes = +$('minutes').value, subjects = +$('subjects').value;
+  const rec = {
+    no: $('studentNo').value, name: sel.value.trim(), gender: radio('gender'), age: $('age').value, extra: radio('extra'), sleepHrs: $('sleepHrs').value,
+    week: $('weekNo').value, day: $('dayName').value, minutes, subjects,
+    over80: minutes > LIMIT_MIN, over2: subjects > 2, over3: subjects > 3,
+    heavySubject: $('heavySubject').value.trim(),
+    types: [...document.querySelectorAll('input[name="wtype"]:checked')].map(e => e.value),
+    load: radio('loadLevel'), ...scores, note: $('note').value.trim(), time: new Date().toLocaleString('th-TH')
+  };
+  const all = load();
+  const dup = all.findIndex(x => String(x.no) === String(rec.no) && x.name === rec.name && x.week === rec.week && x.day === rec.day);
+  if (dup >= 0) {
+    if (!confirm(`มีข้อมูลของ ${rec.name} สัปดาห์ที่ ${rec.week} วัน${rec.day} อยู่แล้ว ต้องการแทนที่ด้วยข้อมูลใหม่หรือไม่?`)) return;
+    all[dup] = rec;
+  } else {
+    all.push(rec);
+  }
+  if (!save(all)) return fail('บันทึกไม่สำเร็จ (เบราว์เซอร์ไม่อนุญาตให้เก็บข้อมูล)');
+  saveProfile();
+  sendRecord(rec).then(() => { updateSummary(); loadClass(); });
+  msg.textContent = '✅ บันทึกข้อมูลสำเร็จ ขอบคุณที่ช่วยแชร์ข้อมูล';
+  msg.className = 'text-sm text-center font-medium text-emerald-600';
+  $('minutes').value = ''; $('subjects').value = ''; $('heavySubject').value = ''; $('note').value = '';
+  $('minFlag').textContent = ''; $('subFlag').textContent = '';
+  document.querySelectorAll('input[name="wtype"]').forEach(e => e.checked = false);
+  ITEMS.forEach(([k]) => document.querySelectorAll(`input[name="${k}"]`).forEach(e => e.checked = false));
+  updateSummary();
+}
+
+async function loadClass() {
+  const box = $('classSummary'), note = $('classNote');
+  if (!ONLINE) { box.innerHTML = ''; note.textContent = '⚪ ยังไม่ได้เชื่อม Firebase จึงยังไม่มีสรุปทั้งห้อง'; return; }
+  note.textContent = 'กำลังโหลด...';
+  try {
+    const c = await getFb();
+    const r = Object.values((await c.rt.get(c.rt.ref(c.db, 'public'))).val() || {});
+    if (!r.length) { box.innerHTML = ''; note.textContent = 'ยังไม่มีข้อมูลของห้อง'; return; }
+    const s = statsOf(r), people = new Set(r.map(x => x.u)).size;
+    const pc = l => Math.round(r.filter(x => x.load === l).length * 100 / r.length) + '%';
+    const cells = [
+      ['จำนวนคนที่ตอบ', people], ['จำนวนรายการทั้งหมด', s.n],
+      [`เกิน ${LIMIT_MIN} นาที/วัน`, s.over80 + '%'], ['เกิน 2 วิชา/วัน', s.over2 + '%'],
+      ['เกิน 3 วิชา/วัน', s.over3 + '%'], ['เวลาเฉลี่ย (นาที)', s.avgMin.toFixed(0)],
+      ['ความเครียดเฉลี่ย (1-5)', s.avgStress.toFixed(2)], ['ความเหนื่อยเฉลี่ย (1-5)', s.avgTired.toFixed(2)],
+      ['วัน "เริ่มตึงมือ"', pc('เริ่มตึง')], ['วัน "ท่วม / ไม่ไหว"', pc('ไม่ไหว')]
+    ];
+    box.innerHTML = cells.map(([l, v]) =>
+      `<div class="bg-white rounded-xl p-3 border border-slate-200"><div class="text-xs text-slate-500">${l}</div><div class="text-xl font-bold text-indigo-600">${v}</div></div>`).join('');
+    note.textContent = '🟢 ข้อมูลล่าสุดจากทั้งห้อง (ไม่แสดงชื่อ)';
+  } catch (e) { note.textContent = '⚠️ โหลดสรุปทั้งห้องไม่สำเร็จ ลองกดรีเฟรช'; }
+}
+const keyOf = x => [x.no, x.name, x.week, x.day].join('|');
+const num = v => (v === '' || v == null) ? null : Number(v);
+let fbP;
+function getFb() {
+  if (!ONLINE) return Promise.resolve(null);
+  if (!fbP) fbP = (async () => {
+    const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
+    const [app, rt] = await Promise.all([import(base + 'firebase-app.js'), import(base + 'firebase-database.js')]);
+    return { db: rt.getDatabase(app.initializeApp(FIREBASE_CONFIG)), rt };
+  })();
+  return fbP;
+}
+const DAYS = ['จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์'];
+function deviceId() {
+  try {
+    let u = localStorage.getItem('m214_hw_uid');
+    if (!u) { u = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)).replace(/-/g, ''); localStorage.setItem('m214_hw_uid', u); }
+    return u;
+  } catch (e) { return Math.random().toString(36).slice(2); }
+}
+// ส่ง 2 ที่: public = ไม่มีชื่อ/เลขที่ (ทุกคนอ่านได้ ใช้ทำสรุปทั้งห้อง) / responses = มีชื่อ (เขียนได้อย่างเดียว อ่านได้เฉพาะเจ้าของโปรเจกต์ใน Firebase Console)
+function sendRecord(rec) {
+  return getFb().then(async c => {
+    if (!c) return;
+    const { rt, db } = c;
+    const u = deviceId(), d = DAYS.indexOf(rec.day);
+    const pub = { u, week: +rec.week, dayIdx: d, minutes: +rec.minutes, subjects: +rec.subjects,
+      over80: !!rec.over80, over2: !!rec.over2, over3: !!rec.over3, load: rec.load,
+      stress: +rec.stress, anxious: +rec.anxious, tired: +rec.tired, sleep: +rec.sleep, nofun: +rec.nofun, norest: +rec.norest,
+      ts: rt.serverTimestamp() };
+    await rt.set(rt.ref(db, `public/${u}_${pub.week}_${d}`), pub);
+    const data = { ...rec, no: +rec.no, week: +rec.week, age: num(rec.age), sleepHrs: num(rec.sleepHrs), key: keyOf(rec), ts: rt.serverTimestamp() };
+    delete data.synced;
+    await rt.push(rt.ref(db, 'responses'), data);
+    const a = load(), i = a.findIndex(x => keyOf(x) === keyOf(rec));
+    if (i >= 0) { a[i].synced = true; save(a); }
+  }).catch(() => {});
+}
+async function syncPending() {
+  if (!ONLINE) return;
+  for (const x of load().filter(x => !x.synced)) await sendRecord(x);
+}
+
+function statsOf(r) {
+  const n = r.length;
+  const pct = c => n ? Math.round(r.filter(c).length * 100 / n) : 0;
+  const avg = k => n ? r.reduce((s, x) => s + (+x[k] || 0), 0) / n : 0;
+  return { n, over80: pct(x => x.over80), over2: pct(x => x.over2), over3: pct(x => x.over3),
+           avgMin: avg('minutes'), avgStress: avg('stress'), avgTired: avg('tired') };
+}
+function updateSummary() {
+  const s = statsOf(load()), has = s.n > 0;
+  const f = (v, d) => has ? (+v).toFixed(d) : '-', p = v => has ? v + '%' : '-';
+  const cells = [
+    ['จำนวนรายการของคุณ', s.n], [`เกิน ${LIMIT_MIN} นาที/วัน`, p(s.over80)],
+    ['เกิน 2 วิชา/วัน', p(s.over2)], ['เกิน 3 วิชา/วัน', p(s.over3)],
+    ['เวลาเฉลี่ย (นาที)', f(s.avgMin, 0)], ['ความเครียดเฉลี่ย (1-5)', f(s.avgStress, 2)]
+  ];
+  $('summary').innerHTML = cells.map(([l, v]) =>
+    `<div class="bg-white rounded-xl p-3 border border-slate-200"><div class="text-xs text-slate-500">${l}</div><div class="text-xl font-bold text-indigo-600">${v}</div></div>`).join('');
+  const n = $('syncNote');
+  n.textContent = ONLINE ? '🟢 ส่งข้อมูลเข้าระบบออนไลน์ของห้องแล้ว' : '⚪ ยังไม่ได้เชื่อม Firebase (ตั้งค่า FIREBASE_CONFIG) ข้อมูลเก็บในเครื่องนี้เท่านั้น';
+  n.className = 'text-xs mb-3 ' + (ONLINE ? 'text-emerald-600' : 'text-slate-500');
+  renderRows();
+}
+
+function renderRows() {
+  const r = load();
+  const tb = $('rows');
+  tb.textContent = '';
+  if (!r.length) {
+    const tr = tb.insertRow(), td = tr.insertCell();
+    td.colSpan = 7; td.className = 'p-3 text-center text-slate-400'; td.textContent = 'ยังไม่มีข้อมูล';
+    return;
+  }
+  r.forEach((x, i) => {
+    const tr = tb.insertRow();
+    tr.className = 'border-t border-slate-100' + (x.over80 ? ' bg-rose-50' : '');
+    [x.no, x.name, `ส.${x.week} ${x.day}`, x.minutes, x.subjects, x.stress].forEach((v, j) => {
+      const td = tr.insertCell();
+      td.className = 'p-2' + (j > 2 ? ' text-right' : '');
+      td.textContent = v ?? '';
+    });
+    const td = tr.insertCell();
+    const b = document.createElement('button');
+    b.textContent = '✕'; b.className = 'text-rose-500 px-2'; b.setAttribute('aria-label', 'ลบรายการนี้');
+    b.onclick = () => { if (confirm('ลบรายการนี้?')) { const a = load(); a.splice(i, 1); save(a); updateSummary(); } };
+    if (!ONLINE) td.appendChild(b);
+  });
+}
+
+function exportCSV() {
+  const r = load();
+  if (!r.length) {
+    $('msg').textContent = '⚠️ ยังไม่มีข้อมูลให้ดาวน์โหลด';
+    $('msg').className = 'text-sm text-center font-medium text-rose-600';
+    return;
+  }
+  const keys = [...new Set(r.flatMap(x => Object.keys(x)))];
+  const esc = v => {
+    let s = String(Array.isArray(v) ? v.join(' | ') : v ?? '');
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; // กันสูตรใน Excel/Sheets
+    return '"' + s.replace(/"/g, '""') + '"';
+  };
+  const csv = '\ufeff' + [keys.join(','), ...r.map(x => keys.map(k => esc(x[k])).join(','))].join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], {type: 'text/csv;charset=utf-8'}));
+  const a = document.createElement('a');
+  a.href = url; a.download = 'm214_homework.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function clearAll() {
+  if (confirm('ล้างข้อมูลที่บันทึกไว้ในเครื่องนี้ทั้งหมด?')) { save([]); updateSummary(); }
+}
+restoreProfile();
+updateSummary();
+syncPending().then(() => { updateSummary(); loadClass(); });
+</script>
+</body>
+</html>
